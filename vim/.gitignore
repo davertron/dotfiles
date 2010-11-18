@@ -4,3 +4,4 @@ bundle/command-t/ruby/command-t/ext.o
 bundle/command-t/ruby/command-t/match.o
 bundle/command-t/ruby/command-t/matcher.o
 bundle/command-t/ruby/command-t/mkmf.log
+sessions/*
