@@ -96,7 +96,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-autocmd Filetype html,xml,xsl,gsp source ~/.vim/scripts/closetag.vim
+autocmd Filetype html,xml,xsl,gsp source ~/.vim/bundle/closetag/closetag.vim
 autocmd Filetype gsp set filetype=html
 
 "source /home/david/.vim/my_functions.vim
