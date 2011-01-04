@@ -1,5 +1,5 @@
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
 
 autocmd!
 
@@ -86,6 +86,13 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-c> <C-w><C-c>
 
 nnoremap <leader>bb :call OpenNerdtreeBookmark()<CR>
+nnoremap <F5> :GundoToggle<CR>
+nnoremap <leader>ss :Scratch<CR>
+nnoremap <leader>svs :Sscratch<CR>
+
+" Pretty-format json, see link below on how to get json_xs
+" http://visibletrap.blogspot.com/2010/05/vim-how-to-format-and-syntax-highlight.html
+map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " Highlight bogus whitespace
 highlight ExtraWhitespace ctermbg=DarkRed guibg=DarkRed
