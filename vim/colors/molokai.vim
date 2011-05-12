@@ -209,4 +209,8 @@ if &t_Co > 255
    hi LineNr          ctermfg=250 ctermbg=234
    hi NonText         ctermfg=250 ctermbg=234
    hi ColorColumn     term=reverse ctermbg=4 guibg=#455354
+
+	"Invisible character colors
+	highlight NonText guifg=#4a4a59
+	highlight SpecialKey guifg=#4a4a59
 end
