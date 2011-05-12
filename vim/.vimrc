@@ -1,5 +1,32 @@
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
+set nocompatible               " be iMproved
+filetype on			" turn on to avoid non-zero exit code in osx
+filetype off                   " required!
+
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'chrismetcalf/vim-yankring'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'rails.vim'
+Bundle 'scratch'
+Bundle 'ack.vim'
+Bundle 'bufexplorer.zip'
+Bundle 'closetag.vim'
+Bundle 'matchit.zip'
+Bundle 'EasyMotion'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
 
 autocmd!
 
