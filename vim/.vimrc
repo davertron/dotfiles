@@ -30,12 +30,17 @@ filetype plugin indent on     " required!
 
 autocmd!
 
+set history=500
+
 " Try to get 256 colors...
 "set t_Co=256
 colorscheme molokai
 
+let g:EasyMotion_leader_key = '<Leader>m'
+
 syntax enable
-set expandtab
+set noexpandtab
+"set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -64,9 +69,6 @@ set showmatch
 
 let mapleader = ","
 
-filetype on
-filetype indent on
-filetype plugin on
 nnoremap <silent> <F12> :set paste!<CR>
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F9> :VSTreeExplore<CR>
@@ -75,9 +77,8 @@ nnoremap / /\v
 vnoremap / /\v
 " Shut off search highlighting
 nnoremap <leader><space> :noh<cr>
-" Use tab to match parens/brackets/etc.
-nnoremap <tab> %
-vnoremap <tab> %
+" Update command t
+nnoremap <leader>T :CommandTFlush<cr>
 " Go down to the next line, not the next visible line
 nnoremap j gj
 nnoremap k gk
@@ -94,6 +95,8 @@ map <Leader>qp :cN<CR>
 map <Leader>j :b#<CR>
 map <Leader>s :call SaveSession()<cr>
 map <Leader>l :call LoadSession()<cr>
+" Update jslint
+map <Leader>js :JSLintUpdate<CR>
 " Email selected text
 map <Leader>e :call EmailText()<cr>
 " Remap escape to a more finger-friendly key
@@ -121,6 +124,12 @@ nnoremap <leader>svs :Sscratch<CR>
 " http://visibletrap.blogspot.com/2010/05/vim-how-to-format-and-syntax-highlight.html
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 " Highlight bogus whitespace
 highlight ExtraWhitespace ctermbg=DarkRed guibg=DarkRed
 match ExtraWhitespace /\s\+$/
@@ -133,10 +142,24 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Filetype html,xml,xsl,gsp source ~/.vim/bundle/closetag/closetag.vim
 autocmd Filetype gsp set filetype=html
 
+" Abbreviations
+ab scriptcanvas   <script type="text/javascript" src="__UP_ddcGadgetHost__/gadget-content/libs/ddc/features/ddc.analytics.views.canvas/canvas.js"></script>
+ab scriptutil   <script type="text/javascript" src="__UP_ddcGadgetHost__/gadget-content/libs/ddc/features/ddc.util/util.js"></script>
+
 "source /home/david/.vim/my_functions.vim
 
 "Whenever the root of the NerdTree changes, set that as the CWD
 let NERDTreeChDirMode=2
+
+" Groovy syntax
+au BufNewFile,BufRead *.groovy  setf groovy
+
+if did_filetype()
+	finish
+endif
+if getline(1) =~ '^#!.*[/\\]groovy\>'
+	setf groovy
+endif
 
 function! OpenNerdtreeBookmark()
   let s:bookmark = input('Bookmark name: ')
@@ -180,3 +203,4 @@ function! EmailText() range
 
   call system('mail -s ' . s:subject . ' ' . s:email, s:text)
 endfunction
+
