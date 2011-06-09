@@ -23,6 +23,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'closetag.vim'
 Bundle 'matchit.zip'
 Bundle 'EasyMotion'
+Bundle 'groovy.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -30,6 +31,7 @@ filetype plugin indent on     " required!
 
 autocmd!
 
+set guifont=Inconsolata:h15
 set history=500
 
 " Try to get 256 colors...
@@ -41,13 +43,13 @@ let g:EasyMotion_leader_key = '<Leader>m'
 syntax enable
 set noexpandtab
 "set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 "set statusline=%-f,%l,%L
 "set tw=79
 "set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ %{fugitive#statusline()}
 set laststatus=2
 "set number
 set hlsearch
@@ -117,7 +119,7 @@ nnoremap <C-c> <C-w><C-c>
 
 nnoremap <leader>bb :call OpenNerdtreeBookmark()<CR>
 nnoremap <F5> :GundoToggle<CR>
-nnoremap <leader>ss :Scratch<CR>
+nnoremap <leader>ss :ScratchOpen<CR>
 nnoremap <leader>svs :Sscratch<CR>
 
 " Pretty-format json, see link below on how to get json_xs
@@ -139,7 +141,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-autocmd Filetype html,xml,xsl,gsp source ~/.vim/bundle/closetag/closetag.vim
+autocmd Filetype html,xml,xsl,gsp source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 autocmd Filetype gsp set filetype=html
 
 " Abbreviations
