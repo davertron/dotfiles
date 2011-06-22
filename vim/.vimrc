@@ -24,6 +24,7 @@ Bundle 'closetag.vim'
 Bundle 'matchit.zip'
 Bundle 'EasyMotion'
 Bundle 'groovy.vim'
+Bundle 'grails-vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -122,9 +123,7 @@ nnoremap <F5> :GundoToggle<CR>
 nnoremap <leader>ss :ScratchOpen<CR>
 nnoremap <leader>svs :Sscratch<CR>
 
-" Pretty-format json, see link below on how to get json_xs
-" http://visibletrap.blogspot.com/2010/05/vim-how-to-format-and-syntax-highlight.html
-map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+map <leader>jt  <Esc>:%!python -mjson.tool<CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
