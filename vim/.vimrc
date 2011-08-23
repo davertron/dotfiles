@@ -25,6 +25,8 @@ Bundle 'matchit.zip'
 Bundle 'EasyMotion'
 Bundle 'groovy.vim'
 Bundle 'grails-vim'
+Bundle 'vim-coffee-script'
+Bundle 'Gist.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -34,6 +36,7 @@ autocmd!
 
 set guifont=Inconsolata:h15
 set history=500
+set hidden
 
 " Try to get 256 colors...
 "set t_Co=256
@@ -59,7 +62,7 @@ set directory=~/.vim/.backups/,/tmp
 set wildignore+=*.class,.git
 set formatoptions=tcq
 " Amount of lines to keep between the top/bottom of the window and the cursor
-set scrolloff=5
+set scrolloff=1
 set wildmenu
 set wildmode=list:longest
 set ignorecase
@@ -122,11 +125,19 @@ nnoremap <leader>bb :call OpenNerdtreeBookmark()<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <leader>ss :ScratchOpen<CR>
 nnoremap <leader>svs :Sscratch<CR>
+nnoremap <Leader>A :Ack '<C-r><C-w>'<cr>
 
 map <leader>jt  <Esc>:%!python -mjson.tool<CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" Bind make to F4; useful for working with jslint, etc.
+nmap <F4> :w<CR>:make<CR>:cw<CR>
+
+" Map copy to system clipboard to be a little more finger friendly
+nmap <leader>y "+y
+vmap <leader>y "+y
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
