@@ -156,7 +156,8 @@ set incsearch
 set showmatch
 
 " Enable mouse scrolling
-set mouse=a
+" NOTE: This seems to fuck up visual selections...which is great
+"set mouse=a
 
 " Syntastic settings
 set statusline+=%#warningmsg#
@@ -279,6 +280,9 @@ ab gmesg <g:message code="" />
 
 "Whenever the root of the NerdTree changes, set that as the CWD
 let NERDTreeChDirMode=2
+
+" Left align comments on toggle
+let NERDDefaultAlign = 'left'
 
 " Groovy syntax
 au BufNewFile,BufRead *.groovy  setf groovy
