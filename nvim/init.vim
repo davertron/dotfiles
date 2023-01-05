@@ -47,6 +47,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'preservim/nerdtree'
 Plug 'github/copilot.vim'
 Plug 'catppuccin/nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'prettier/vim-prettier'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -61,6 +63,10 @@ set relativenumber
 set incsearch
 set hlsearch
 set showmatch
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 let mapleader = ","
 
@@ -101,8 +107,24 @@ nnoremap <C-l> <C-w>l
 " Mapping to yank to system clipboard
 nnoremap <leader>y "+y
 
-" Mapping to use ctrl-c to close the current buffer
-nnoremap <C-c> :bd<CR>
-
 " Shut off search highlighting
 nnoremap <leader><space> :noh<cr>
+
+" Map a key to close the current buffer
+nnoremap <leader>q :bd<CR>
+
+lua << EOF
+local nvim_lsp = require('lspconfig')
+nvim_lsp.tsserver.setup {}
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts) -- This never seemed to work...
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+	end,
+})
+EOF
