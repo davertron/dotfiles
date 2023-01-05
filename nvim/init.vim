@@ -49,6 +49,7 @@ Plug 'github/copilot.vim'
 Plug 'catppuccin/nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'prettier/vim-prettier'
+Plug 'tpope/vim-surround'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -86,10 +87,9 @@ nnoremap <leader>, :NERDTreeToggle<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-"nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" Map ctrl-p to open Telescope buffers
-nnoremap <C-p> <cmd>Telescope buffers<cr>
-nnoremap <leader>f 356C-F8C6h <cmd>Telescope help_tags<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"nnoremap <leader>f 356C-F8C6h <cmd>Telescope help_tags<cr>
+nnoremap <silent> <leader>fv :e $MYVIMRC<CR>
 
 " Normal mode mapping to go to the next line
 nnoremap j gj
@@ -111,7 +111,7 @@ nnoremap <leader>y "+y
 nnoremap <leader><space> :noh<cr>
 
 " Map a key to close the current buffer
-nnoremap <leader>q :bd<CR>
+nnoremap <leader>d :bd<CR>
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
